@@ -1,0 +1,46 @@
+#!/bin/bash
+
+param=$1
+
+meta_data() {
+  cat <<END
+<?xml version="1.0"?>
+<!DOCTYPE resource-agent SYSTEM "ra-api-1.dtd">
+<resource-agent name="foobar" version="0.1">
+  <version>0.1</version>
+  <longdesc lang="en">
+Floatip ocf resource agent for migrating a specified floating subnet via the Heficed API</longdesc>
+  <shortdesc lang="en">Assign floating subnet via Heficed API</shortdesc>
+<parameters>
+</parameters>
+  <actions>
+    <action name="start"        timeout="30" />
+    <action name="stop"         timeout="30" />
+    <action name="monitor"      timeout="60"
+                                interval="10" depth="0" />
+    <action name="meta-data"    timeout="5" />
+  </actions>
+</resource-agent>
+END
+}
+
+if [ "start" == "$param" ] ; then
+  python /opt/floatingIP/assign-ip.py $param $ID
+
+elif [ "stop" == "$param" ] ; then
+  exit 0;
+
+elif [ "status" == "$param" ] ; then
+    python /opt/floatingIP/assign-ip.py $param
+
+elif [ "monitor" == "$param" ] ; then
+    python /opt/floatingIP/assign-ip.py $param
+
+elif [ "meta-data" == "$param" ] ; then
+  meta_data
+  exit 0
+
+else
+  echo "no such command $param"
+  exit 1;
+fi
