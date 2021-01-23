@@ -11,7 +11,7 @@ command = sys.argv[1]
 
 ######################### Variables from the config #########################
 
-with open('/opt/floatingIP/api.conf') as f:
+with open('/etc/heficed/floatingip/api.conf') as f:
     for line in f.readlines():
         if 'tenantId' in line:
             tenantId = line.split('=')[1].strip()
