@@ -25,16 +25,16 @@ END
 }
 
 if [ "start" == "$param" ] ; then
-  python /opt/floatingIP/assign-ip.py $param $ID
+  python2 /etc/heficed/floatingip/assign-ip.py $param $ID
 
 elif [ "stop" == "$param" ] ; then
   exit 0;
 
 elif [ "status" == "$param" ] ; then
-    python /opt/floatingIP/assign-ip.py $param
+    python2 /etc/heficed/floatingip/assign-ip.py $param
 
 elif [ "monitor" == "$param" ] ; then
-    python /opt/floatingIP/assign-ip.py $param
+    python2 /etc/heficed/floatingip/assign-ip.py $param
 
 elif [ "meta-data" == "$param" ] ; then
   meta_data
